@@ -1,4 +1,5 @@
 # Examen Final Tratamiento de Datos - Clasificación de Imágenes
+
  
 El objetivo de esta practica es asentar los conocimientos que se han obtenido durante el curso.
 

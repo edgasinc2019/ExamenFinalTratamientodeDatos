@@ -92,7 +92,7 @@ La matriz de confusión se genera al ejecutar 'ImageClassification.ipynb' con Ju
 
 ------------------------------------------------------------------------------
 
-![Resultados](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/01.png)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/01.png)
 
 --------------------------------------------------------------------------------
 
@@ -110,8 +110,7 @@ El código también configura el entorno para mostrar gráficos en línea usando
 
 --------------------------------------------------------------------------------
 
-train_Directorio = 'CarneDataset/train'
-test_Directorio = 'CarneDataset/test'
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/02.png)
 
 --------------------------------------------------------------------------------
 
@@ -125,11 +124,7 @@ Estas rutas de directorio se utilizan como entrada a la clase ImageDataGenerator
 
 --------------------------------------------------------------------------------
 
-print("Informacion de la carpeta TRAIN:")
-train_batches = ImageDataGenerator().flow_from_directory(train_Directorio, target_size=(224,224), classes=['CLASS_01', 'CLASS_02', 'CLASS_03', 'CLASS_04', 'CLASS_05', 'CLASS_06', 'CLASS_07', 'CLASS_08'], batch_size=10)
-
-print("Informacion de la carpeta TEST:")
-test_batches = ImageDataGenerator().flow_from_directory(test_Directorio, target_size=(224,224), classes=['CLASS_01', 'CLASS_02', 'CLASS_03', 'CLASS_04', 'CLASS_05', 'CLASS_06', 'CLASS_07', 'CLASS_08'], batch_size=4)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/03.png)
 
 --------------------------------------------------------------------------------
 
@@ -139,19 +134,7 @@ El método flow_from_directory de la clase ImageDataGenerator lee imágenes de u
 
 --------------------------------------------------------------------------------
 
-def plots(ims, figsize=(17,5), rows=2, interp=False, titles=None):
-    if type(ims[0]) is np.ndarray:
-        ims = np.array(ims).astype(np.uint8)
-        if (ims.shape[-1] != 3):
-            ims = ims.transpose((0,2,3,1))
-    f = plt.figure(figsize=figsize)
-    cols = len(ims)//rows if len(ims) % 2 == 0 else len(ims)//rows + 1
-    for i in range(len(ims)):
-        sp = f.add_subplot(rows, cols, i+1)
-        sp.axis('Off')
-        if titles is not None:
-            sp.set_title(titles[i], fontsize=16)
-        plt.imshow(ims[i], interpolation=None if interp else 'none')
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/04.png)
 
 --------------------------------------------------------------------------------
 
@@ -171,7 +154,7 @@ El parámetro titles se utiliza para establecer el título de cada subtrama, y l
 
 --------------------------------------------------------------------------------
 
-imgs, labels = next(train_batches)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/05.png)
 
 --------------------------------------------------------------------------------
 
@@ -179,7 +162,7 @@ Este código genera un lote de datos de imagen y las etiquetas correspondientes 
 
 --------------------------------------------------------------------------------
 
-plots(imgs, titles=labels)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/06.png)
 
 --------------------------------------------------------------------------------
 
@@ -187,8 +170,7 @@ Este código llama a la función de gráficos definida anteriormente para mostra
 
 --------------------------------------------------------------------------------
 
-print("Los Tipos de Clases son:")
-train_batches.class_indices
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/07.png)
 
 --------------------------------------------------------------------------------
 
@@ -196,49 +178,7 @@ Este código imprime los índices de clase para las clases en el conjunto de dat
 
 --------------------------------------------------------------------------------
 
-def plot_confusion_matrix(
-    cm, classes,
-    normalize=False,
-    title='Confusion matrix',
-    cmap=plt.cm.Blues):
-    
-    plt.imshow(
-        cm,
-        interpolation='nearest',
-        cmap=cmap
-    )
-    plt.title(title)
-    plt.colorbar()
-    tick_marks = np.arange(
-        len(classes)
-    )
-    plt.xticks(
-        tick_marks,
-        classes,
-        rotation=45
-    )
-    plt.yticks(
-        tick_marks,
-        classes
-    )
-
-    if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-        print("Matriz de confusión normalizada")
-    else:
-        print('Matriz de confusión, sin normalización')
-
-    print(cm)
-
-    thresh = cm.max() / 2.
-    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, cm[i, j],
-                 horizontalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
-
-    plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/08.png)
 
 --------------------------------------------------------------------------------
 
@@ -260,15 +200,7 @@ A continuación, la función establece un umbral para el color del texto en el g
 
 --------------------------------------------------------------------------------
 
-tf.keras.applications.vgg16.VGG16(
-    include_top=True,
-    weights='imagenet',
-    input_tensor=None,
-    input_shape=None,
-    pooling=None,
-    classes=1000,
-    classifier_activation='softmax'
-)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/09.png)
 
 --------------------------------------------------------------------------------
 
@@ -299,8 +231,7 @@ Al instanciar el modelo VGG16 con estos argumentos, obtendrá un modelo VGG16 co
 
 --------------------------------------------------------------------------------
 
-vgg16_model = keras.applications.vgg16.VGG16()
-vgg16_model.summary()
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/10.png)
 
 --------------------------------------------------------------------------------
 
@@ -308,7 +239,7 @@ El código que proporcionó crea una instancia del modelo VGG16 y luego llama al
 
 --------------------------------------------------------------------------------
 
-type(vgg16_model)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/11.png)
 
 --------------------------------------------------------------------------------
 
@@ -318,7 +249,7 @@ Sin embargo, el tipo específico del objeto depende de la versión de Keras que 
 
 --------------------------------------------------------------------------------
 
-keras.engine.training.Model
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/12.png)
 
 --------------------------------------------------------------------------------
 
@@ -328,10 +259,7 @@ La clase keras.engine.training.Model proporciona funcionalidades para compilar e
 
 --------------------------------------------------------------------------------
 
-model = Sequential()
-for i in vgg16_model.layers:
-    model.add(i)
-model.summary()
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/13.png)
 
 --------------------------------------------------------------------------------
 
@@ -339,8 +267,7 @@ El código que proporcionó tiene como objetivo crear un nuevo modelo secuencial
 
 --------------------------------------------------------------------------------
 
-model.layers.pop()
-model.summary()
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/14.png)
 
 --------------------------------------------------------------------------------
 
@@ -348,8 +275,7 @@ El resumen muestra la arquitectura del modelo después de añadir las capas. Inc
 
 --------------------------------------------------------------------------------
 
-for layer in model.layers:
-    layer.trainable = False
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/15.png)
 
 --------------------------------------------------------------------------------
 
@@ -361,12 +287,7 @@ Congelar las capas puede ser beneficioso cuando tienes datos de entrenamiento li
 
 --------------------------------------------------------------------------------
 
-model.add(Dense(
-    8,
-    activation='softmax'
-)
-         )
-model.summary()
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/16.png)
 
 --------------------------------------------------------------------------------
 
@@ -375,11 +296,7 @@ La capa densa recién añadida con 8 unidades y activación de softmax se ha inc
 
 --------------------------------------------------------------------------------
 
-model.compile(
-    Adam(lr=0.07),
-    loss='categorical_crossentropy',
-    metrics=['accuracy']
-)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/17.png)
 
 --------------------------------------------------------------------------------
 
@@ -400,15 +317,7 @@ Al llamar a model.compile(), configura el modelo para el entrenamiento con el op
 
 --------------------------------------------------------------------------------
 
-model.fit(
-    train_batches,
-    steps_per_epoch=1,
-    validation_data=test_batches,
-    validation_steps=13,
-    epochs=15,
-    batch_size=32,
-    verbose=2
-)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/18.png)
 
 --------------------------------------------------------------------------------
 
@@ -441,15 +350,7 @@ Al llamar a model.fit(), se inicia el proceso de entrenamiento para el número e
 
 --------------------------------------------------------------------------------
 
-model.fit(
-    train_batches,
-    steps_per_epoch=1,
-    validation_data=test_batches,
-    validation_steps=13,
-    epochs=15,
-    batch_size=32,
-    verbose=2
-)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/19.png)
 
 --------------------------------------------------------------------------------
 
@@ -482,13 +383,7 @@ Al llamar a model.fit(), se inicia el proceso de entrenamiento para el número e
 
 --------------------------------------------------------------------------------
 
-test_imgs, test_labels = next(test_batches)
-plots(test_imgs, titles=test_labels)
-print(test_labels)
-predictions = model.predict_on_batch(np.array(test_imgs))
-print(predictions)
-test_labels = np.array(test_labels.argmax(axis=1))
-predictions = np.array(predictions.argmax(axis=1))
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/20.png)
 
 --------------------------------------------------------------------------------
 
@@ -519,7 +414,7 @@ Parece que estás comparando las verdaderas etiquetas (test_labels) con las etiq
 
 --------------------------------------------------------------------------------
 
-print(test_labels)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/21.png)
 
 --------------------------------------------------------------------------------
 
@@ -529,7 +424,7 @@ Asegúrese de haber ejecutado el código necesario para cargar los datos de prue
 
 --------------------------------------------------------------------------------
 
-print(predictions)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/22.png)
 
 --------------------------------------------------------------------------------
 
@@ -539,10 +434,7 @@ Asegúrese de haber ejecutado el código necesario para predecir en las imágene
 
 --------------------------------------------------------------------------------
 
-cm = confusion_matrix(
-    test_labels,
-    predictions
-)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/23.png)
 
 --------------------------------------------------------------------------------
 
@@ -554,33 +446,7 @@ Puede utilizar la matriz de confusión para analizar el rendimiento del modelo, 
 
 --------------------------------------------------------------------------------
 
-cm_plot_labels = [
-    'CLASS_01',
-    'CLASS_02',
-    'CLASS_03',
-    'CLASS_04',
-    'CLASS_05',
-    'CLASS_06',
-    'CLASS_07', 
-    'CLASS_08'
-]
-
-if 0 not in test_labels and 0 not in predictions:
-    cm_plot_labels.remove('CLASS_01')
-if 1 not in test_labels and 1 not in predictions:
-    cm_plot_labels.remove('CLASS_02')
-if 2 not in test_labels and 2 not in predictions:
-    cm_plot_labels.remove('CLASS_03')
-if 3 not in test_labels and 3 not in predictions:
-    cm_plot_labels.remove('CLASS_04')
-if 4 not in test_labels and 4 not in predictions:
-    cm_plot_labels.remove('CLASS_05')
-if 5 not in test_labels and 5 not in predictions:
-    cm_plot_labels.remove('CLASS_06')
-if 6 not in test_labels and 6 not in predictions:
-    cm_plot_labels.remove('CLASS_07')
-if 7 not in test_labels and 7 not in predictions:
-    cm_plot_labels.remove('CLASS_08')
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/24.png)
 
 --------------------------------------------------------------------------------
 
@@ -590,11 +456,7 @@ Después de ejecutar este código, la lista cm_plot_labels solo contendrá las e
 
 --------------------------------------------------------------------------------
 
-plot_confusion_matrix(
-    cm,
-    cm_plot_labels,
-    title='Matrix Confusion'
-)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/25.png)
 
 --------------------------------------------------------------------------------
 

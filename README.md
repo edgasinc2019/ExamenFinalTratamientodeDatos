@@ -143,6 +143,7 @@ Estas rutas de directorio se utilizan como entrada a la clase ImageDataGenerator
 
 print("Informacion de la carpeta TRAIN:")
 train_batches = ImageDataGenerator().flow_from_directory(train_Directorio, target_size=(224,224), classes=['CLASS_01', 'CLASS_02', 'CLASS_03', 'CLASS_04', 'CLASS_05', 'CLASS_06', 'CLASS_07', 'CLASS_08'], batch_size=10)
+
 print("Informacion de la carpeta TEST:")
 test_batches = ImageDataGenerator().flow_from_directory(test_Directorio, target_size=(224,224), classes=['CLASS_01', 'CLASS_02', 'CLASS_03', 'CLASS_04', 'CLASS_05', 'CLASS_06', 'CLASS_07', 'CLASS_08'], batch_size=4)
 

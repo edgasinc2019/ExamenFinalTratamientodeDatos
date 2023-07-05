@@ -34,16 +34,53 @@ Evaluación del clasificador (matrices de confusión):                  3 puntos
 
 Obtener más de 95% de acierto se considerá un 10 automáticamente.
 
-##################################################################################################################################
+#################################################################################################################
 
-Este repositorio proporciona una implementación de la clasificación de imágenes utilizando una red neuronal convolucional que adapta y optimiza el modelo VGG16 preentrenado utilizando la técnica de aprendizaje de transferencia. 
+Este repositorio proporciona una implementación de la clasificación de imágenes utilizando la optimizacion del modelo VGG16 preentrenado utilizando la técnica de aprendizaje de transferencia. 
 
-El modelo es capaz de clasificar las imágenes de animales en las siguientes cuatro clases:
+El modelo es capaz de clasificar las imágenes de tipos de carnes en las siguientes cuatro clases:
 
-Perros
+'CLASS_01'
+'CLASS_02'
+'CLASS_03'
+'CLASS_04'
+'CLASS_05'
+'CLASS_06'
+'CLASS_07'
+'CLASS_08'
 
-Gatos
+# Dependencies
 
-Monos
+Languages - Python
 
-Vaca
+Frameworks - Matplotlib, Scikit-learn, Numpy, TensorFlow, Keras
+
+Entornos adicionales - Jupyter Notebook
+
+
+# Train, test and save the model
+
+Ejecute 'ImageClassification.ipynb' con Jupyter Notebook. 
+
+He proporcionado un conjunto de datos de muestra en la carpeta "CarneDataset" como referencia. 
+
+Puedes añadir tus propias imágenes o modificar el conjunto de datos por completo. 
+
+Asegúrate de encargarte de las rutas configuradas.
+
+
+# Resultado
+
+Los resultados del entrenamiento y la prueba del modelo en el conjunto de datos de la muestra son los siguientes:
+
+
+Precisión en el conjunto de entrenamiento: 1.0000
+
+Pérdida en el conjunto de entrenamiento: 0,2596
+
+Precisión en el conjunto de validación: 1.0000
+
+Pérdida en el conjunto de validación: 0,2279
+
+La matriz de confusión se genera al ejecutar 'ImageClassification.ipynb' con Jupyter Notebook.
+

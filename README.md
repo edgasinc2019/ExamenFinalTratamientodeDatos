@@ -354,39 +354,6 @@ Al llamar a model.fit(), se inicia el proceso de entrenamiento para el número e
 
 --------------------------------------------------------------------------------
 
-La función model.fit() en Keras se utiliza para entrenar un modelo en un conjunto de datos dado. Requiere especificar los datos de entrenamiento, los datos de validación, el número de épocas, el tamaño del lote y otros parámetros opcionales.
-
-En el fragmento de código que proporcionó, se llama a la función model.fit() con los siguientes argumentos:
-
-Train_batches: 
-Estos son los datos de entrenamiento proporcionados como lotes. Se supone que es un iterable que proporciona los datos de entrada y las etiquetas en lotes durante el entrenamiento.
-
-Steps_per_epoch=1: 
-El parámetro steps_per_epoch especifica el número de pasos (lote) a procesar antes de declarar una época como terminada. En este caso, lo establece en 1, lo que indica que después de procesar un lote, una época se considera completa.
-
-Validation_data=test_batches: 
-Estos son los datos de validación proporcionados como lotes. Se supone que es un iterable que proporciona los datos de entrada y las etiquetas en lotes durante la validación.
-
-Validation_steps=13: 
-El parámetro validation_steps especifica el número de pasos (batches) a procesar desde el conjunto de datos de validación antes de detener la validación para esa época. En este caso, lo establece en 13, lo que indica que se procesarán 13 lotes para su validación en cada época.
-
-Epochs=15: 
-El número de épocas especifica el número de veces que se debe pasar todo el conjunto de datos de entrenamiento a través del modelo durante el entrenamiento. En este caso, la formación continuará durante 15 épocas.
-
-Batch_size=32: 
-El tamaño del lote determina el número de muestras que se procesarán a la vez antes de actualizar los pesos del modelo. En este caso, cada lote contendrá 32 muestras.
-
-Verbose=2: 
-El parámetro verbose controla la verbosidad del proceso de entrenamiento. Establecerlo en 2 significa que se mostrará el progreso de cada época, incluidos los valores de pérdida y métricas.
-
-Al llamar a model.fit(), se inicia el proceso de entrenamiento para el número especificado de épocas, utilizando los datos de entrenamiento y validación proporcionados.
-
---------------------------------------------------------------------------------
-
-![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/20.png)
-
---------------------------------------------------------------------------------
-
 Parece que está tratando de realizar predicciones en un lote de imágenes de prueba utilizando el modelo entrenado. Aquí hay un desglose del fragmento de código que proporcionó:
 
 Test_imgs, test_labels = next(test_batches): 
@@ -414,7 +381,7 @@ Parece que estás comparando las verdaderas etiquetas (test_labels) con las etiq
 
 --------------------------------------------------------------------------------
 
-![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/21.png)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/20.png)
 
 --------------------------------------------------------------------------------
 
@@ -424,7 +391,7 @@ Asegúrese de haber ejecutado el código necesario para cargar los datos de prue
 
 --------------------------------------------------------------------------------
 
-![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/22.png)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/21.png)
 
 --------------------------------------------------------------------------------
 
@@ -434,7 +401,7 @@ Asegúrese de haber ejecutado el código necesario para predecir en las imágene
 
 --------------------------------------------------------------------------------
 
-![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/23.png)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/22.png)
 
 --------------------------------------------------------------------------------
 
@@ -446,7 +413,7 @@ Puede utilizar la matriz de confusión para analizar el rendimiento del modelo, 
 
 --------------------------------------------------------------------------------
 
-![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/24.png)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/23.png)
 
 --------------------------------------------------------------------------------
 
@@ -456,7 +423,7 @@ Después de ejecutar este código, la lista cm_plot_labels solo contendrá las e
 
 --------------------------------------------------------------------------------
 
-![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/25.png)
+![Codigo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/24.png)
 
 --------------------------------------------------------------------------------
 
@@ -467,6 +434,7 @@ Utiliza imshow() de matplotlib para visualizar la matriz de confusión como una 
 Puedes personalizar la apariencia de la trama y las etiquetas en función de tus requisitos. Después de definir la función, puede llamar a plot_confusion_matrix() con los argumentos apropiados para mostrar la matriz de confusión.
 
 Asegúrate de haber importado las bibliotecas necesarias (matplotlib y numpy) antes de ejecutar este código.
+
 
 
 

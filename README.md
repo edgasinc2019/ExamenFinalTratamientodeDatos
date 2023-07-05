@@ -1,4 +1,5 @@
 # Examen Final Tratamiento de Datos - Clasificación de Imágenes
+
  
 El objetivo de esta practica es asentar los conocimientos que se han obtenido durante el curso.
 
@@ -84,3 +85,7 @@ Pérdida en el conjunto de validación: 0,2279
 
 La matriz de confusión se genera al ejecutar 'ImageClassification.ipynb' con Jupyter Notebook.
 
+<<<<<<< HEAD
+=======
+Vaca
+>>>>>>> a842b776d31bce5dd302b323eca512731d074f80

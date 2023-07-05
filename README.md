@@ -622,7 +622,7 @@ Puedes personalizar la apariencia de la trama y las etiquetas en función de tus
 
 Asegúrate de haber importado las bibliotecas necesarias (matplotlib y numpy) antes de ejecutar este código.
 
-
+![Texto alternativo](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/SCR-20230704-uiqp.png)
 
 
 

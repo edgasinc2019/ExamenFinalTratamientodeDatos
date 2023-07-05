@@ -200,9 +200,426 @@ plots(imgs, titles=labels)
 
 Este código llama a la función de gráficos definida anteriormente para mostrar una cuadrícula de imágenes con sus etiquetas correspondientes.
 
+--------------------------------------------------------------------------------
 
+print("Los Tipos de Clases son:")
+train_batches.class_indices
 
+--------------------------------------------------------------------------------
 
+Este código imprime los índices de clase para las clases en el conjunto de datos de entrenamiento.
+
+--------------------------------------------------------------------------------
+
+def plot_confusion_matrix(
+    cm, classes,
+    normalize=False,
+    title='Confusion matrix',
+    cmap=plt.cm.Blues):
+    
+    plt.imshow(
+        cm,
+        interpolation='nearest',
+        cmap=cmap
+    )
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(
+        len(classes)
+    )
+    plt.xticks(
+        tick_marks,
+        classes,
+        rotation=45
+    )
+    plt.yticks(
+        tick_marks,
+        classes
+    )
+
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        print("Matriz de confusión normalizada")
+    else:
+        print('Matriz de confusión, sin normalización')
+
+    print(cm)
+
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, cm[i, j],
+                 horizontalalignment="center",
+                 color="white" if cm[i, j] > thresh else "black")
+
+    plt.tight_layout()
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+
+--------------------------------------------------------------------------------
+
+Este código define una función llamada plot_confusion_matrix que se puede utilizar para mostrar una matriz de confusión para un conjunto de etiquetas predichas y verdaderas.
+
+La función tiene varios parámetros:
+
+Cm: la matriz de confusión para mostrar
+Clases: una lista de los nombres de las clases
+normalize: si normalizar la matriz de confusión
+title: el título de la trama
+Cmap: el mapa de color a usar para la trama
+
+La función utiliza imshow de matplotlib para mostrar la matriz de confusión como una imagen. Establece el título de la trama y añade una barra de color a la trama. Luego establece las marcas de verificación para el eje x y el eje y en los nombres de las clases.
+
+Si normalizar se establece en True, la función normaliza la matriz de confusión dividiendo cada fila por la suma de la fila. Luego imprime la matriz de confusión normalizada.
+
+A continuación, la función establece un umbral para el color del texto en el gráfico basado en el valor máximo en la matriz de confusión. Añade el texto de cada celda de la matriz de confusión a la trama. Finalmente, establece las etiquetas del eje x y del eje y para el gráfico.
+
+--------------------------------------------------------------------------------
+
+tf.keras.applications.vgg16.VGG16(
+    include_top=True,
+    weights='imagenet',
+    input_tensor=None,
+    input_shape=None,
+    pooling=None,
+    classes=1000,
+    classifier_activation='softmax'
+)
+
+--------------------------------------------------------------------------------
+
+El código que proporcionó es una instancia del modelo VGG16 en la API Keras de TensorFlow. Aquí hay una explicación de los diferentes argumentos:
+
+Include_top: 
+Este argumento especifica si se debe incluir la capa totalmente conectada en la parte superior de la red. Si se establece en True, el modelo incluirá la capa superior, que consiste en una capa de agrupación promedio global seguida de una capa densa con el número especificado de clases (por defecto: 1000). Si se establece en False, se excluye la capa totalmente conectada, y la salida serán las características de 7x7x512.
+
+Weights: 
+este argumento determina la inicialización del peso del modelo. Al establecerlo en "imagenet", el modelo se inicializará con pesos preentrenados en el conjunto de datos de ImageNet. Si lo estableces en Ninguno, el modelo se inicializará al azar.
+
+Input_tensor: 
+Este argumento le permite especificar un tensor Keras como entrada al modelo. Si Ninguno, el modelo creará una nueva capa de entrada.
+
+Input_shape: 
+Este argumento se utiliza para especificar la forma de la imagen de entrada. Debe ser una tupla (altura, anchura, canales). Este argumento se ignora si se especifica input_tensor.
+
+Pooling: 
+Este argumento especifica el tipo de agrupación que se aplicará después del último bloque convolucional. Si es Ninguno, no se aplica la agrupación, y la salida serán las características de 7x7x512. Si se establece en "promedio", se aplicará la agrupación promedio global, lo que resultará en una salida 1D con forma (batch_size, 512). Si se establece en "max", se aplicará la agrupación global max en su lugar.
+
+Classes: 
+Este argumento determina el número de clases para la tarea de clasificación. Solo es relevante cuando include_top se establece en True.
+
+Classifier_activation: 
+Este argumento especifica la función de activación que se utilizará para la capa superior. El valor predeterminado es "softmax", que es adecuado para tareas de clasificación de varias clases.
+
+Al instanciar el modelo VGG16 con estos argumentos, obtendrá un modelo VGG16 con la configuración especificada.
+
+--------------------------------------------------------------------------------
+
+vgg16_model = keras.applications.vgg16.VGG16()
+vgg16_model.summary()
+
+--------------------------------------------------------------------------------
+
+El código que proporcionó crea una instancia del modelo VGG16 y luego llama al método summary() para imprimir un resumen de la arquitectura del modelo.
+
+--------------------------------------------------------------------------------
+
+type(vgg16_model)
+
+--------------------------------------------------------------------------------
+
+La función type() en Python se utiliza para determinar el tipo de un objeto. 
+En este caso, vgg16_model es una instancia del modelo VGG16 de la biblioteca Keras. 
+Sin embargo, el tipo específico del objeto depende de la versión de Keras que estés usando.
+
+--------------------------------------------------------------------------------
+
+keras.engine.training.Model
+
+--------------------------------------------------------------------------------
+
+El tipo correcto de vgg16_model sería keras.engine.training.Model. Esta es la clase base para todos los modelos de Keras, incluido el modelo VGG16. Representa un modelo de red neuronal que se puede entrenar y utilizar para la inferencia.
+
+La clase keras.engine.training.Model proporciona funcionalidades para compilar el modelo, entrenarlo con datos, evaluar el rendimiento y hacer predicciones. Sirve como la clase central para construir y trabajar con varios tipos de modelos de redes neuronales en Keras.
+
+--------------------------------------------------------------------------------
+
+model = Sequential()
+for i in vgg16_model.layers:
+    model.add(i)
+model.summary()
+
+--------------------------------------------------------------------------------
+
+El código que proporcionó tiene como objetivo crear un nuevo modelo secuencial y agregar todas las capas del modelo VGG16 preexistente (vgg16_model) al nuevo modelo (modelo). Después, se llama al método summary() para mostrar el resumen del nuevo modelo.
+
+--------------------------------------------------------------------------------
+
+model.layers.pop()
+model.summary()
+
+--------------------------------------------------------------------------------
+
+El resumen muestra la arquitectura del modelo después de añadir las capas. Incluye el tipo de capa, la forma de salida y el número de parámetros en cada capa.
+
+--------------------------------------------------------------------------------
+
+for layer in model.layers:
+    layer.trainable = False
+
+--------------------------------------------------------------------------------
+
+El fragmento de código que proporcionó establece el atributo entrenable de cada capa del modelo en False. Esto significa que durante el entrenamiento, los pesos de estas capas no se actualizarán y permanecerán fijos.
+
+Al establecer layer.trainable = False, esencialmente está congelando las capas del modelo. Esto puede ser útil en escenarios en los que desea utilizar las capas preentrenadas de un modelo (como VGG16) como extractores de características y solo entrenar las capas recién añadidas en la parte superior.
+
+Congelar las capas puede ser beneficioso cuando tienes datos de entrenamiento limitados o cuando quieres evitar que se modifiquen las representaciones preentrenadas. Le permite aprovechar las características aprendidas de un gran conjunto de datos mientras adapta el modelo a una tarea específica con un conjunto de datos más pequeño.
+
+--------------------------------------------------------------------------------
+
+model.add(Dense(
+    8,
+    activation='softmax'
+)
+         )
+model.summary()
+
+--------------------------------------------------------------------------------
+
+Después de añadir una capa densa con 8 unidades y una función de activación softmax al modelo.
+La capa densa recién añadida con 8 unidades y activación de softmax se ha incluido en el modelo
+
+--------------------------------------------------------------------------------
+
+model.compile(
+    Adam(lr=0.07),
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+--------------------------------------------------------------------------------
+
+El método compile() en Keras se utiliza para configurar el proceso de aprendizaje de un modelo. Requiere especificar el optimizador, la función de pérdida y las métricas de evaluación que se utilizarán durante el entrenamiento y la evaluación.
+
+En el fragmento de código que proporcionó, se llama al método compile() en el modelo con los siguientes argumentos:
+
+Adam(lr=0.07): 
+El optimizador Adam se especifica con una tasa de aprendizaje de 0,07. Adam es un popular algoritmo de optimización utilizado para la optimización basada en gradientes. Al pasar lr=0.07, estableces la tasa de aprendizaje del optimizador en 0.07.
+
+loss='categorical_crossentropy': 
+La entropía cruzada categórica se especifica como la función de pérdida. La entropía cruzada categórica se utiliza comúnmente para tareas de clasificación de varias clases cuando los objetivos están codificados en caliente.
+
+metrics=['accuracy']: 
+La métrica utilizada para la evaluación durante el entrenamiento y las pruebas es la precisión. Es una métrica de uso común para las tareas de clasificación que mide la proporción de muestras correctamente clasificadas.
+
+Al llamar a model.compile(), configura el modelo para el entrenamiento con el optimizador, la función de pérdida y la métrica de evaluación especificadas.
+
+--------------------------------------------------------------------------------
+
+model.fit(
+    train_batches,
+    steps_per_epoch=1,
+    validation_data=test_batches,
+    validation_steps=13,
+    epochs=15,
+    batch_size=32,
+    verbose=2
+)
+
+--------------------------------------------------------------------------------
+
+El método fit() en Keras se utiliza para entrenar un modelo en un conjunto de datos determinado. Requiere especificar los datos de entrenamiento, los datos de validación, el número de épocas, el tamaño del lote y otros parámetros opcionales.
+
+En el fragmento de código que proporcionó, se llama al método fit() en el modelo con los siguientes argumentos:
+
+Train_batches:
+Estos son los datos de entrenamiento proporcionados como lotes. Se supone que es un iterable que proporciona los datos de entrada y las etiquetas en lotes durante el entrenamiento.
+
+Steps_per_epoch=1: 
+El parámetro steps_per_epoch especifica el número de pasos (lote) a procesar antes de declarar una época como terminada. En este caso, lo establece en 1, lo que indica que después de procesar un lote, una época se considera completa.
+
+Validation_data=test_batches: 
+Estos son los datos de validación proporcionados como lotes. Se supone que es un iterable que proporciona los datos de entrada y las etiquetas en lotes durante la validación.
+
+Validation_steps=13: 
+El parámetro validation_steps especifica el número de pasos (batches) a procesar desde el conjunto de datos de validación antes de detener la validación para esa época. En este caso, lo establece en 13, lo que indica que se procesarán 13 lotes para su validación en cada época.
+
+Epochs=15: 
+El número de épocas especifica el número de veces que se debe pasar todo el conjunto de datos de entrenamiento a través del modelo durante el entrenamiento. En este caso, la formación continuará durante 15 épocas.
+
+Batch_size=32: 
+El tamaño del lote determina el número de muestras que se procesarán a la vez antes de actualizar los pesos del modelo. En este caso, cada lote contendrá 32 muestras.
+
+Verbose=2: 
+El parámetro verbose controla la verbosidad del proceso de entrenamiento. Establecerlo en 2 significa que se mostrará el progreso de cada época, incluidos los valores de pérdida y métricas.
+
+Al llamar a model.fit(), se inicia el proceso de entrenamiento para el número especificado de épocas, utilizando los datos de entrenamiento y validación proporcionados.
+
+--------------------------------------------------------------------------------
+
+model.fit(
+    train_batches,
+    steps_per_epoch=1,
+    validation_data=test_batches,
+    validation_steps=13,
+    epochs=15,
+    batch_size=32,
+    verbose=2
+)
+
+--------------------------------------------------------------------------------
+
+La función model.fit() en Keras se utiliza para entrenar un modelo en un conjunto de datos dado. Requiere especificar los datos de entrenamiento, los datos de validación, el número de épocas, el tamaño del lote y otros parámetros opcionales.
+
+En el fragmento de código que proporcionó, se llama a la función model.fit() con los siguientes argumentos:
+
+Train_batches: 
+Estos son los datos de entrenamiento proporcionados como lotes. Se supone que es un iterable que proporciona los datos de entrada y las etiquetas en lotes durante el entrenamiento.
+
+Steps_per_epoch=1: 
+El parámetro steps_per_epoch especifica el número de pasos (lote) a procesar antes de declarar una época como terminada. En este caso, lo establece en 1, lo que indica que después de procesar un lote, una época se considera completa.
+
+Validation_data=test_batches: 
+Estos son los datos de validación proporcionados como lotes. Se supone que es un iterable que proporciona los datos de entrada y las etiquetas en lotes durante la validación.
+
+Validation_steps=13: 
+El parámetro validation_steps especifica el número de pasos (batches) a procesar desde el conjunto de datos de validación antes de detener la validación para esa época. En este caso, lo establece en 13, lo que indica que se procesarán 13 lotes para su validación en cada época.
+
+Epochs=15: 
+El número de épocas especifica el número de veces que se debe pasar todo el conjunto de datos de entrenamiento a través del modelo durante el entrenamiento. En este caso, la formación continuará durante 15 épocas.
+
+Batch_size=32: 
+El tamaño del lote determina el número de muestras que se procesarán a la vez antes de actualizar los pesos del modelo. En este caso, cada lote contendrá 32 muestras.
+
+Verbose=2: 
+El parámetro verbose controla la verbosidad del proceso de entrenamiento. Establecerlo en 2 significa que se mostrará el progreso de cada época, incluidos los valores de pérdida y métricas.
+
+Al llamar a model.fit(), se inicia el proceso de entrenamiento para el número especificado de épocas, utilizando los datos de entrenamiento y validación proporcionados.
+
+--------------------------------------------------------------------------------
+
+test_imgs, test_labels = next(test_batches)
+plots(test_imgs, titles=test_labels)
+print(test_labels)
+predictions = model.predict_on_batch(np.array(test_imgs))
+print(predictions)
+test_labels = np.array(test_labels.argmax(axis=1))
+predictions = np.array(predictions.argmax(axis=1))
+
+--------------------------------------------------------------------------------
+
+Parece que está tratando de realizar predicciones en un lote de imágenes de prueba utilizando el modelo entrenado. Aquí hay un desglose del fragmento de código que proporcionó:
+
+Test_imgs, test_labels = next(test_batches): 
+Esta línea obtiene un lote de imágenes de prueba y sus etiquetas correspondientes del iterador test_batches.
+
+Plots(test_imgs, titles=test_labels): 
+Esta línea llama a la función plots() para mostrar las imágenes de prueba con sus etiquetas correspondientes como títulos.
+
+Print(test_labels): 
+Esta línea imprime las etiquetas verdaderas de las imágenes de prueba.
+
+predictions = model.predict_on_batch(np.array(test_imgs)): 
+Esta línea utiliza el modelo entrenado para predecir las etiquetas de las imágenes de prueba llamando a model.predict_on_batch() en el lote de imágenes de prueba convertidas en una matriz NumPy.
+
+Print(predictions): 
+Esta línea imprime las etiquetas previstas para las imágenes de prueba.
+
+Test_labels = np.array(test_labels.argmax(axis=1)): 
+Esta línea convierte las etiquetas verdaderas en una matriz y aplica la función argmax() a lo largo del eje de la fila para obtener el índice del valor máximo (es decir, la clase predicha) para cada etiqueta.
+
+predictions = np.array(predictions.argmax(axis=1)): 
+Esta línea convierte las etiquetas predichas en una matriz y aplica la función argmax() a lo largo del eje de la fila para obtener el índice del valor máximo (es decir, la clase predicha) para cada predicción.
+
+Parece que estás comparando las verdaderas etiquetas (test_labels) con las etiquetas predichas (predicciones) para evaluar el rendimiento del modelo. Al comparar las etiquetas verdaderas y predichas, puede calcular métricas como la precisión o crear una matriz de confusión para evaluar el rendimiento del modelo.
+
+--------------------------------------------------------------------------------
+
+print(test_labels)
+
+--------------------------------------------------------------------------------
+
+Esto mostrará las etiquetas verdaderas de las imágenes de prueba en la consola o en la ventana de salida. La variable test_labels debe contener las verdaderas etiquetas de las imágenes de prueba.
+
+Asegúrese de haber ejecutado el código necesario para cargar los datos de prueba y asignar las etiquetas verdaderas a la variable test_labels antes de llamar a print(test_labels).
+
+--------------------------------------------------------------------------------
+
+print(predictions)
+
+--------------------------------------------------------------------------------
+
+Esto mostrará las etiquetas previstas para las imágenes de prueba en la consola o en la ventana de salida. La variable de predicciones debe contener las etiquetas predichas generadas por el modelo.
+
+Asegúrese de haber ejecutado el código necesario para predecir en las imágenes de prueba y asigne las etiquetas predichas a la variable de predicciones antes de llamar a print(predicciones).
+
+--------------------------------------------------------------------------------
+
+cm = confusion_matrix(
+    test_labels,
+    predictions
+)
+
+--------------------------------------------------------------------------------
+
+La función confusion_matrix() en scikit-learn se utiliza para calcular la matriz de confusión a partir de las etiquetas verdaderas y las etiquetas previstas.
+
+La variable cm resultante contendrá la matriz de confusión, que es una matriz cuadrada con dimensiones iguales al número de clases. Los elementos de la matriz representan los recuentos de predicciones de verdadero positivo, falso positivo, verdadero negativo y falso negativo para cada clase.
+
+Puede utilizar la matriz de confusión para analizar el rendimiento del modelo, calcular métricas como la precisión, el recuerdo y la puntuación F1, o visualizar los resultados utilizando un mapa de calor u otras técnicas de visualización.
+
+--------------------------------------------------------------------------------
+
+cm_plot_labels = [
+    'CLASS_01',
+    'CLASS_02',
+    'CLASS_03',
+    'CLASS_04',
+    'CLASS_05',
+    'CLASS_06',
+    'CLASS_07', 
+    'CLASS_08'
+]
+
+if 0 not in test_labels and 0 not in predictions:
+    cm_plot_labels.remove('CLASS_01')
+if 1 not in test_labels and 1 not in predictions:
+    cm_plot_labels.remove('CLASS_02')
+if 2 not in test_labels and 2 not in predictions:
+    cm_plot_labels.remove('CLASS_03')
+if 3 not in test_labels and 3 not in predictions:
+    cm_plot_labels.remove('CLASS_04')
+if 4 not in test_labels and 4 not in predictions:
+    cm_plot_labels.remove('CLASS_05')
+if 5 not in test_labels and 5 not in predictions:
+    cm_plot_labels.remove('CLASS_06')
+if 6 not in test_labels and 6 not in predictions:
+    cm_plot_labels.remove('CLASS_07')
+if 7 not in test_labels and 7 not in predictions:
+    cm_plot_labels.remove('CLASS_08')
+
+--------------------------------------------------------------------------------
+
+Este código comprueba si cada etiqueta de clase está presente tanto en test_labels como en las predicciones, y si no, elimina la etiqueta de clase correspondiente de la lista cm_plot_labels.
+
+Después de ejecutar este código, la lista cm_plot_labels solo contendrá las etiquetas de clase que están presentes tanto en test_labels como en las predicciones. A continuación, puede utilizar esta lista actualizada para trazar o mostrar la matriz de confusión.
+
+--------------------------------------------------------------------------------
+
+plot_confusion_matrix(
+    cm,
+    cm_plot_labels,
+    title='Matrix Confusion'
+)
+
+--------------------------------------------------------------------------------
+
+Este código define la función plot_confusion_matrix(), que toma la matriz de confusión (cm), la lista de etiquetas de clase (cm_plot_labels) y un título opcional como entrada. 
+
+Utiliza imshow() de matplotlib para visualizar la matriz de confusión como una imagen codificada por colores. La función también incluye etiquetas de eje, marcas de verificación y anotaciones de texto para las celdas de la matriz.
+
+Puedes personalizar la apariencia de la trama y las etiquetas en función de tus requisitos. Después de definir la función, puede llamar a plot_confusion_matrix() con los argumentos apropiados para mostrar la matriz de confusión.
+
+Asegúrate de haber importado las bibliotecas necesarias (matplotlib y numpy) antes de ejecutar este código.
 
 
 

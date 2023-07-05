@@ -85,32 +85,14 @@ Pérdida en el conjunto de validación: 1.2619
 
 La matriz de confusión se genera al ejecutar 'ImageClassification.ipynb' con Jupyter Notebook:
 
-![Resultados](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/SCR-20230704-uiqp.png)
+![Resultados](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/Matriz.png)
 
 
 # Procedimiento
 
 ------------------------------------------------------------------------------
 
-import numpy as np
-
-from matplotlib import pyplot as plt
-from sklearn.metrics import confusion_matrix
-import itertools
-get_ipython().run_line_magic('matplotlib', 'inline')
-
-import keras
-from keras import backend as k
-from keras.models import Sequential
-from keras.layers import Activation
-from keras.layers.core import Dense, Flatten
-from keras.optimizers import Adam
-from keras.metrics import categorical_crossentropy
-from keras.preprocessing.image import ImageDataGenerator
-from keras.layers.normalization import *
-from keras.layers.convolutional import *
-
-import tensorflow as tf
+![Resultados](https://github.com/edgasinc2019/ExamenFinalTratamientodeDatos/blob/main/Imagenes%20GitHub/01.png)
 
 --------------------------------------------------------------------------------
 
